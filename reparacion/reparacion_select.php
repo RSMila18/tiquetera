@@ -7,6 +7,6 @@ require('../config/conexion.php');
 $query = "SELECT * FROM concierto";
 
 // Ejecutar la consulta
-$resultadoProyecto = mysqli_query($conn, $query) or die(mysqli_error($conn));
+$resultadoReparacion = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 mysqli_close($conn);
