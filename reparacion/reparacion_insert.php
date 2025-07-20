@@ -5,7 +5,7 @@ require('../config/conexion.php');
 
 // Sacar los datos del formulario. Cada input se identifica con su "name"
 $codigo = $_POST["codigo_de_concierto"];
-$fecha = $_POST["fecha_de_presentacion"];
+$fecha_de_presentacion = $_POST["fecha_de_presentacion"];
 $costo_de_realizacion = $_POST["costo_de_realizacion"];
 // Verificar si el campo de id_supervisor está vacío y asignar NULL si es necesario
 $id_proponete = $_POST["id_proponente"];
