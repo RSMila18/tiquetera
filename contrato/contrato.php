@@ -21,13 +21,13 @@ include "../includes/header.php";
         </div>
 
         <div class="mb-3">
-            <label for="fecha_de_firma" class="form-label">Fecha de inicio</label>
-            <input type="date" class="form-control" id="fecha_de_firma" name="fecha_de_firma" required>
+            <label for="fecha_de_inicio" class="form-label">Fecha de inicio</label>
+            <input type="date" class="form-control" id="fecha_de_inicio" name="fecha_de_inicio" required>
         </div>
 
         <div class="mb-3">
-            <label for="fecha_de_presentacion" class="form-label">Fecha de finalización</label>
-            <input type="date" class="form-control" id="fecha_de_presentacion" name="fecha_de_presentacion" required>
+            <label for="fecha_de_finalizacion" class="form-label">Fecha de finalización</label>
+            <input type="date" class="form-control" id="fecha_de_finalizacion" name="fecha_de_finalizacion" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Agregar</button>
@@ -64,16 +64,16 @@ if($resultadoContrato and $resultadoContrato->num_rows > 0):
 
             <?php
             // Iterar sobre los registros que llegaron
-            foreach ($resultadoEmpresa as $fila):
+            foreach ($resultadoContrato as $fila):
             ?>
 
             <!-- Fila que se generará -->
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
                 <td class="text-center"><?= $fila["numero_de_contrato"]; ?></td>
-                <td class="text-center"><?= $fila["monto_acordado"]; ?></td>
-                <td class="text-center">$<?= $fila["fecha_de_inicio"]; ?></td>
-                <td class="text-center">C.C. <?= $fila["fecha_de_finalizacion"]; ?></td>
+                <td class="text-center">$<?= $fila["monto_acordado"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_de_inicio"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_de_finalizacion"]; ?></td>
 
                 <!-- Botón de eliminar. Debe de incluir la CP de la entidad para identificarla -->
                 <td class="text-center">

@@ -19,8 +19,8 @@ $resultadoSupervisor = $resultadoMecanico;
         </div>
 
         <div class="mb-3">
-            <label for="fecha" class="form-label">Fecha</label>
-            <input type="date" class="form-control" id="fecha" name="fecha" required>
+            <label for="fecha_de_presentacion" class="form-label">Fecha</label>
+            <input type="date" class="form-control" id="fecha_de_presentacion" name="fecha_de_presentacion" required>
         </div>
 
         <div class="mb-3">
@@ -106,7 +106,7 @@ if($resultadoReparacion and $resultadoReparacion->num_rows > 0):
         <thead class="table-dark">
             <tr>
                 <th scope="col" class="text-center">Código de concierto</th>
-                <th scope="col" class="text-center">Fecha</th>
+                <th scope="col" class="text-center">Fecha de Presentación</th>
                 <th scope="col" class="text-center">Costo de realización</th>
                 <th scope="col" class="text-center">Identificación del proponente</th>
                 <th scope="col" class="text-center">Identificación del supervisor</th>
@@ -125,7 +125,7 @@ if($resultadoReparacion and $resultadoReparacion->num_rows > 0):
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
                 <td class="text-center"><?= $fila["codigo_de_concierto"]; ?></td>
-                <td class="text-center"><?= $fila["fecha"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_de_presentacion"]; ?></td>
                 <td class="text-center">$<?= $fila["costo_de_realizacion"]; ?></td>
                 <td class="text-center"><?= $fila["id_proponente"]; ?></td>
                 <td class="text-center"><?= $fila["id_supervisor"]; ?></td>

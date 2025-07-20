@@ -98,7 +98,7 @@ if($resultadoMecanico and $resultadoMecanico->num_rows > 0):
                 <td class="text-center"><?= $fila["numero_de_identificacion"]; ?></td>
                 <td class="text-center"><?= $fila["nombre"]; ?></td>
                 <td class="text-center"><?= $fila["tipo_de_persona"]; ?></td>
-                <td class="text-center"><?= $fila["numero_de_contrato"]; ?></td>
+                <td class="text-center"><?= $fila["numero_contrato"]; ?></td>
 
                 <!-- Botón de eliminar. Debe de incluir la CP de la entidad para identificarla -->
                 <td class="text-center">

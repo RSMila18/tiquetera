@@ -7,14 +7,14 @@ require('../config/conexion.php');
 $numero_de_identificacion = $_POST["numero_de_identificacion"];
 $nombre = $_POST["nombre"];
 $tipo_de_persona = $_POST["tipo_de_persona"];
-if (isset($_POST["numero_de_contrato"]) && $_POST["numero_de_contrato"] !== "") {
-	$numero_de_contrato= $_POST["numero_de_contrato"];
+if (isset($_POST["numero_contrato"]) && $_POST["numero_contrato"] !== "") {
+	$numero_contrato= $_POST["numero_contrato"];
 } else {
-    $numero_de_contrato = "NULL";
+    $numero_contrato = "NULL";
 }
 
 // Query SQL a la BD. Si tienen que hacer comprobaciones, hacerlas acá (Generar una query diferente para casos especiales)
-$query = "INSERT INTO `solicitante`(`numero_de_identificacion`,`nombre`, `tipo_de_persona`, `numero_de_contrato`) VALUES ($numero_de_identificacion, '$nombre', '$tipo_de_persona', $numero_de_contrato)";
+$query = "INSERT INTO `solicitante`(`numero_de_identificacion`,`nombre`, `tipo_de_persona`, `numero_contrato`) VALUES ($numero_de_identificacion, '$nombre', '$tipo_de_persona', $numero_contrato)";
 
 // Ejecutar consulta
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
