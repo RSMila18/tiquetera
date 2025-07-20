@@ -27,8 +27,8 @@ include "../includes/header.php";
 
         <!-- Consultar la lista de contratos y desplegarlos -->
         <div class="mb-3">
-            <label for="contrato" class="form-label">Contratos</label>
-            <select name="contrato" id="contrato" class="form-select">
+            <label for="numero_contrato" class="form-label">Contratos</label>
+            <select name="numero_contrato" id="numero_contrato" class="form-select">
                 
                 <!-- Option por defecto -->
                 <option value="" selected disabled hidden></option>

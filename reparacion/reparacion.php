@@ -19,7 +19,7 @@ $resultadoSupervisor = $resultadoMecanico;
         </div>
 
         <div class="mb-3">
-            <label for="fecha_de_presentacion" class="form-label">Fecha</label>
+            <label for="fecha_de_presentacion" class="form-label">Fecha de Presentación</label>
             <input type="date" class="form-control" id="fecha_de_presentacion" name="fecha_de_presentacion" required>
         </div>
 
