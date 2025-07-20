@@ -11,7 +11,7 @@ include "../includes/header.php";
     <form action="contrato_insert.php" method="post" class="form-group">
 
         <div class="mb-3">
-            <label for="numero_de_contrato" class="form-label">Numero de contrato</label>
+            <label for="numero_de_contrato" class="form-label">Número de contrato</label>
             <input type="number" class="form-control" id="numero_de_contrato" name="numero_de_contrato" required>
         </div>
 
@@ -21,12 +21,12 @@ include "../includes/header.php";
         </div>
 
         <div class="mb-3">
-            <label for="fecha_de_firma" class="form-label">Fecha de firma</label>
+            <label for="fecha_de_firma" class="form-label">Fecha de inicio</label>
             <input type="date" class="form-control" id="fecha_de_firma" name="fecha_de_firma" required>
         </div>
 
         <div class="mb-3">
-            <label for="fecha_de_presentacion" class="form-label">Fecha de presentacion</label>
+            <label for="fecha_de_presentacion" class="form-label">Fecha de finalización</label>
             <input type="date" class="form-control" id="fecha_de_presentacion" name="fecha_de_presentacion" required>
         </div>
 
@@ -52,10 +52,10 @@ if($resultadoContrato and $resultadoContrato->num_rows > 0):
         <!-- Títulos de la tabla, cambiarlos -->
         <thead class="table-dark">
             <tr>
-                <th scope="col" class="text-center">Numero de contrato</th>
+                <th scope="col" class="text-center">Número de contrato</th>
                 <th scope="col" class="text-center">Monto acordado</th>
-                <th scope="col" class="text-center">Fecha de firma</th>
-                <th scope="col" class="text-center">Fecha de presentacion</th>
+                <th scope="col" class="text-center">Fecha de inicio</th>
+                <th scope="col" class="text-center">Fecha de finalización</th>
                 <th scope="col" class="text-center">Acciones</th>
             </tr>
         </thead>
@@ -72,9 +72,9 @@ if($resultadoContrato and $resultadoContrato->num_rows > 0):
                 <!-- Cada una de las columnas, con su valor correspondiente -->
                 <td class="text-center"><?= $fila["numero_de_contrato"]; ?></td>
                 <td class="text-center"><?= $fila["monto_acordado"]; ?></td>
-                <td class="text-center">$<?= $fila["fecha_de_firma"]; ?></td>
-                <td class="text-center">C.C. <?= $fila["fecha_de_presentacion"]; ?></td>
-                
+                <td class="text-center">$<?= $fila["fecha_de_inicio"]; ?></td>
+                <td class="text-center">C.C. <?= $fila["fecha_de_finalizacion"]; ?></td>
+
                 <!-- Botón de eliminar. Debe de incluir la CP de la entidad para identificarla -->
                 <td class="text-center">
                     <form action="contrato_delete.php" method="post">

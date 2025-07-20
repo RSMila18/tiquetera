@@ -1,5 +1,8 @@
 <?php
 include "../includes/header.php";
+require("../mecanico/mecanico_select.php");
+$resultadoProponente = $resultadoMecanico;
+$resultadoSupervisor = $resultadoMecanico;
 ?>
 
 <!-- TÍTULO. Cambiarlo, pero dejar especificada la analogía -->
@@ -24,28 +27,26 @@ include "../includes/header.php";
             <label for="costo_de_realizacion" class="form-label">Costo de realización</label>
             <input type="number" class="form-control" id="costo_de_realizacion" name="costo_de_realizacion" required>
         </div>
-        
-        <!-- Consultar la lista de solicitantes y desplegarlos -->
+
+    
+        <!-- Consultar la lista de solicitantes para el proponente y desplegarlos -->
         <div class="mb-3">
-            <label for="solicitante" class="form-label">Identificación del proponente</label>
-            <select name="solicitante" id="solicitante" class="form-select">
-                
+            <label for="id_proponente" class="form-label">Identificación del proponente</label>
+            <select name="id_proponente" id="id_proponente" class="form-select" required>
+
                 <!-- Option por defecto -->
                 <option value="" selected disabled hidden></option>
 
-                <?php
-                // Importar el código del otro archivo
-                require("../mecanico/mecanico_select.php");
-                
+                <?php                
                 // Verificar si llegan datos
-                if($resultadoMecanico):
+                if($resultadoProponente):
                     
                     // Iterar sobre los registros que llegaron
-                    foreach ($resultadoMecanico as $fila):
+                    foreach ($resultadoProponente as $fila):
                 ?>
 
                 <!-- Opción que se genera -->
-                <option value="<?= $fila["nombre"]; ?>"><?= $fila["tipo_de_persona"]; ?> <?= $fila["numero_de_identificacion"]; ?></option>
+                <option value="<?= $fila["numero_de_identificacion"]; ?>"><?= $fila["nombre"]; ?></option>
 
                 <?php
                         // Cerrar los estructuras de control
@@ -54,27 +55,25 @@ include "../includes/header.php";
                 ?>
             </select>
         </div>
-
+        
+        <!-- Consultar la lista de solicitantes para el supervisor y desplegarlos -->
         <div class="mb-3">
-            <label for="solicitante" class="form-label">Identificación del supervisor</label>
-            <select name="solicitante" id="solicitante" class="form-select">
-                
+            <label for="id_supervisor" class="form-label">Identificación del supervisor</label>
+            <select name="id_supervisor" id="id_supervisor" class="form-select">
+
                 <!-- Option por defecto -->
                 <option value="" selected disabled hidden></option>
 
-                <?php
-                // Importar el código del otro archivo
-                require("../mecanico/mecanico_select.php");
-                
+                <?php                
                 // Verificar si llegan datos
-                if($resultadoMecanico):
-                    
+                if($resultadoSupervisor):
+
                     // Iterar sobre los registros que llegaron
-                    foreach ($resultadoMecanico as $fila):
+                    foreach ($resultadoSupervisor as $fila):
                 ?>
 
                 <!-- Opción que se genera -->
-                <option value="<?= $fila["nombre"]; ?>"><?= $fila["tipo_de_persona"]; ?> <?= $fila["numero_de_identificacion"]; ?></option>
+                <option value="<?= $fila["numero_de_identificacion"]; ?>"><?= $fila["nombre"]; ?></option>
 
                 <?php
                         // Cerrar los estructuras de control
@@ -111,6 +110,7 @@ if($resultadoReparacion and $resultadoReparacion->num_rows > 0):
                 <th scope="col" class="text-center">Costo de realización</th>
                 <th scope="col" class="text-center">Identificación del proponente</th>
                 <th scope="col" class="text-center">Identificación del supervisor</th>
+                <th scope="col" class="text-center">Acciones</th>
             </tr>
         </thead>
 
@@ -127,8 +127,8 @@ if($resultadoReparacion and $resultadoReparacion->num_rows > 0):
                 <td class="text-center"><?= $fila["codigo_de_concierto"]; ?></td>
                 <td class="text-center"><?= $fila["fecha"]; ?></td>
                 <td class="text-center">$<?= $fila["costo_de_realizacion"]; ?></td>
-                <td class="text-center">C.C. <?= $fila["id_proponente"]; ?></td>
-                <td class="text-center">NIT: <?= $fila["id_supervisor"]; ?></td>
+                <td class="text-center"><?= $fila["id_proponente"]; ?></td>
+                <td class="text-center"><?= $fila["id_supervisor"]; ?></td>
 
                 <!-- Botón de eliminar. Debe de incluir la CP de la entidad para identificarla -->
                 <td class="text-center">
