@@ -18,13 +18,8 @@ include "../includes/header.php";
     <form action="busqueda2.php" method="post" class="form-group">
 
         <div class="mb-3">
-            <label for="numero1" class="form-label">Numero 1</label>
-            <input type="number" class="form-control" id="numero1" name="numero1" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="numero2" class="form-label">Numero 2</label>
-            <input type="number" class="form-control" id="numero2" name="numero2" required>
+            <label for="codigo_de_concierto" class="form-label">úmero de contrato</label>
+            <input type="number" class="form-control" id="codigo_de_concierto" name="codigo_de_concierto" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Buscar</button>
@@ -40,8 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     // Crear conexión con la BD
     require('../config/conexion.php');
 
-    $numero1 = $_POST["numero1"];
-    $numero2 = $_POST["numero2"];
+    $codigo_de_concierto = $_POST["codigo_de_concierto"];
 
     // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
     $query = "SELECT nit, nombre FROM empresa";
@@ -63,8 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
         <!-- Títulos de la tabla, cambiarlos -->
         <thead class="table-dark">
             <tr>
-                <th scope="col" class="text-center">Cédula</th>
-                <th scope="col" class="text-center">Celular</th>
+                <th scope="col" class="text-center">Número de contrato</th>
+                <th scope="col" class="text-center">Monto acordado</th>
+                <th scope="col" class="text-center">Fecha de inicio</th>
+                <th scope="col" class="text-center">Fecha de finalización</th>
             </tr>
         </thead>
 
@@ -78,8 +74,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
             <!-- Fila que se generará -->
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
-                <td class="text-center"><?= $fila["cedula"]; ?></td>
-                <td class="text-center"><?= $fila["celular"]; ?></td>
+                <td class="text-center"><?= $fila["codigo_de_contrato"]; ?></td>
+                <td class="text-center"><?= $fila["monto_acordado"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_de_inicio"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_de_finalizacion"]; ?></td>
             </tr>
 
             <?php
