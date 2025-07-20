@@ -4,13 +4,13 @@
 require('../config/conexion.php');
 
 // Sacar los datos del formulario. Cada input se identifica con su "name"
-$nit = $_POST["numero_de_contrato"];
-$nombre = $_POST["monto_acordado"];
-$presupuesto = $_POST["fecha_de_firma"];
-$cliente = $_POST["fecha_de_presentacion"];
+$numero_de_contrato = $_POST["numero_de_contrato"];
+$monto_acordado = $_POST["monto_acordado"];
+$fecha_de_inicio = $_POST["fecha_de_inicio"];
+$fecha_de_finalizacion = $_POST["fecha_de_finalizacion"];
 
 // Query SQL a la BD. Si tienen que hacer comprobaciones, hacerlas acá (Generar una query diferente para casos especiales)
-$query = "INSERT INTO `contrato`(`numero_de_contrato`,`monto_acordado`, `fecha_de_firma`, `fecha_de_presentacion`) VALUES ('$numero_de_contrato', '$monto_acordado', '$fecha_de_firma', '$fecha_de_presentacion')";
+$query = "INSERT INTO `contrato`(`numero_de_contrato`,`monto_acordado`, `fecha_de_inicio`, `fecha_de_finalizacion`) VALUES ($numero_de_contrato, $monto_acordado, '$fecha_de_inicio', '$fecha_de_finalizacion')";
 
 // Ejecutar consulta
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));

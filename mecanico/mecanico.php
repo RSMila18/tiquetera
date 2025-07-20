@@ -11,7 +11,7 @@ include "../includes/header.php";
     <form action="mecanico_insert.php" method="post" class="form-group">
 
         <div class="mb-3">
-            <label for="numero_de_identificacion" class="form-label">Numero de identificacion</label>
+            <label for="numero_de_identificacion" class="form-label">Número de identificación</label>
             <input type="number" class="form-control" id="numero_de_identificacion" name="numero_de_identificacion" required>
         </div>
 
@@ -77,10 +77,10 @@ if($resultadoMecanico and $resultadoMecanico->num_rows > 0):
         <!-- Títulos de la tabla, cambiarlos -->
         <thead class="table-dark">
             <tr>
-                <th scope="col" class="text-center">Numero de identificacion</th>
+                <th scope="col" class="text-center">Número de identificación</th>
                 <th scope="col" class="text-center">Nombre</th>
                 <th scope="col" class="text-center">Tipo de persona</th>
-                <th scope="col" class="text-center">Contratos</th>
+                <th scope="col" class="text-center">Número de contrato</th>
                 <th scope="col" class="text-center">Acciones</th>
             </tr>
         </thead>
@@ -98,7 +98,8 @@ if($resultadoMecanico and $resultadoMecanico->num_rows > 0):
                 <td class="text-center"><?= $fila["numero_de_identificacion"]; ?></td>
                 <td class="text-center"><?= $fila["nombre"]; ?></td>
                 <td class="text-center"><?= $fila["tipo_de_persona"]; ?></td>
-                
+                <td class="text-center"><?= $fila["numero_de_contrato"]; ?></td>
+
                 <!-- Botón de eliminar. Debe de incluir la CP de la entidad para identificarla -->
                 <td class="text-center">
                     <form action="mecanico_delete.php" method="post">
