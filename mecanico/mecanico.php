@@ -25,6 +25,36 @@ include "../includes/header.php";
             <input type="text" class="form-control" id="tipo_de_persona" name="tipo_de_persona" required>
         </div>
 
+        <!-- Consultar la lista de contratos y desplegarlos -->
+        <div class="mb-3">
+            <label for="contrato" class="form-label">Contratos</label>
+            <select name="contrato" id="contrato" class="form-select">
+                
+                <!-- Option por defecto -->
+                <option value="" selected disabled hidden></option>
+
+                <?php
+                // Importar el código del otro archivo
+                require("../contrato/contrato_select.php");
+                
+                // Verificar si llegan datos
+                if($resultadoContrato):
+                    
+                    // Iterar sobre los registros que llegaron
+                    foreach ($resultadoContrato as $fila):
+                ?>
+
+                <!-- Opción que se genera -->
+                <option value="<?= $fila["numero_de_contrato"]; ?>"> <?= $fila["numero_de_contrato"]; ?></option>
+
+                <?php
+                        // Cerrar los estructuras de control
+                    endforeach;
+                endif;
+                ?>
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Agregar</button>
 
     </form>
@@ -50,6 +80,7 @@ if($resultadoMecanico and $resultadoMecanico->num_rows > 0):
                 <th scope="col" class="text-center">Numero de identificacion</th>
                 <th scope="col" class="text-center">Nombre</th>
                 <th scope="col" class="text-center">Tipo de persona</th>
+                <th scope="col" class="text-center">Contratos</th>
                 <th scope="col" class="text-center">Acciones</th>
             </tr>
         </thead>

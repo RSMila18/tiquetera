@@ -29,36 +29,6 @@ include "../includes/header.php";
             <label for="fecha_de_presentacion" class="form-label">Fecha de presentacion</label>
             <input type="date" class="form-control" id="fecha_de_presentacion" name="fecha_de_presentacion" required>
         </div>
-        
-        <!-- Consultar la lista de mecanicos y desplegarlos -->
-        <div class="mb-3">
-            <label for="mecanico" class="form-label">Solicitante</label>
-            <select name="mecanico" id="mecanico" class="form-select">
-                
-                <!-- Option por defecto -->
-                <option value="" selected disabled hidden></option>
-
-                <?php
-                // Importar el código del otro archivo
-                require("../mecanico/mecanico_select.php");
-                
-                // Verificar si llegan datos
-                if($resultadoMecanico):
-                    
-                    // Iterar sobre los registros que llegaron
-                    foreach ($resultadoMecanico as $fila):
-                ?>
-
-                <!-- Opción que se genera -->
-                <option value="<?= $fila["numero_de_identificacion"]; ?>"><?= $fila["nombre"]; ?> - N.I. <?= $fila["numero_de_identificacion"]; ?></option>
-
-                <?php
-                        // Cerrar los estructuras de control
-                    endforeach;
-                endif;
-                ?>
-            </select>
-        </div>
 
         <button type="submit" class="btn btn-primary">Agregar</button>
 
