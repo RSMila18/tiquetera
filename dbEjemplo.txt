@@ -1,8 +1,8 @@
 CREATE TABLE contrato(
   numero_de_contrato INT(10) PRIMARY KEY,
   monto_acordado FLOAT(20,2) NOT NULL,
-  fecha_de_firma DATE NOT NULL,
-  fecha_de_presentacion DATE NOT NULL
+  fecha_de_inicio DATE NOT NULL,
+  fecha_de_finalizacion DATE NOT NULL
 );
 
 CREATE TABLE solicitante(
@@ -15,10 +15,12 @@ CREATE TABLE solicitante(
 
 CREATE TABLE concierto(
   código_de_concierto INT(10) PRIMARY KEY,
-  fecha DATE NOT NULL,
+  fecha_de_presentacion DATE NOT NULL,
   costo_de_realizacion FLOAT(20,2) NOT NULL,
   id_proponente INT(10) NOT NULL,
   id_supervisor INT(10),
   FOREIGN KEY (id_proponente) REFERENCES solicitante(numero_de_identificacion),
   FOREIGN KEY (id_supervisor) REFERENCES solicitante(numero_de_identificacion)
 );
+
+
