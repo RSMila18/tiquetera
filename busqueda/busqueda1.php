@@ -18,18 +18,8 @@ include "../includes/header.php";
     <form action="busqueda1.php" method="post" class="form-group">
 
         <div class="mb-3">
-            <label for="fecha1" class="form-label">Fecha 1</label>
-            <input type="date" class="form-control" id="fecha1" name="fecha1" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="fecha2" class="form-label">Fecha 2</label>
-            <input type="date" class="form-control" id="fecha2" name="fecha2" required>
-        </div>
-
-        <div class="mb-3">
-            <label for="numero" class="form-label">Número</label>
-            <input type="number" class="form-control" id="numero" name="numero" required>
+            <label for="numero_de_contrato" class="form-label">Número de contrato</label>
+            <input type="number" class="form-control" id="numero_de_contrato" name="numero_de_contrato" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Buscar</button>
@@ -45,9 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     // Crear conexión con la BD
     require('../config/conexion.php');
 
-    $fecha1 = $_POST["fecha1"];
-    $fecha2 = $_POST["fecha2"];
-    $numero = $_POST["numero"];
+    $numero_de_contrato = $_POST["numero_de_contrato"];
 
     // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
     $query = "SELECT cedula, celular FROM cliente";
@@ -69,8 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
         <!-- Títulos de la tabla, cambiarlos -->
         <thead class="table-dark">
             <tr>
-                <th scope="col" class="text-center">Cédula</th>
-                <th scope="col" class="text-center">Celular</th>
+                <th scope="col" class="text-center">Código de concierto</th>
+                <th scope="col" class="text-center">Fecha de presentación</th>
+                <th scope="col" class="text-center">Costo de realización</th>
             </tr>
         </thead>
 
@@ -84,8 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
             <!-- Fila que se generará -->
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
-                <td class="text-center"><?= $fila["cedula"]; ?></td>
-                <td class="text-center"><?= $fila["celular"]; ?></td>
+                <td class="text-center"><?= $fila["codigo_de_concierto"]; ?></td>
+                <td class="text-center"><?= $fila["fecha_de_presentacion"]; ?></td>
+                <td class="text-center"><?= $fila["costo_de_realizacion"]; ?></td>
             </tr>
 
             <?php
