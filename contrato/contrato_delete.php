@@ -4,17 +4,17 @@
 require('../config/conexion.php');
 
 // Sacar la CP de la entidad
-$nitEliminar = $_POST["nitEliminar"];
+$ncEliminar = $_POST["ncEliminar"];
 
 // Query SQL a la BD
-$query = "DELETE FROM empresa WHERE nit = '$nitEliminar'";
+$query = "DELETE FROM contrato WHERE numero_de_contrato = '$ncEliminar'";
 
 // Ejecutar consulta
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
 
 if($result): 
     // Si fue exitosa, redirigirse de nuevo a la página de la entidad
-    header ("Location: empresa.php");
+    header ("Location: contrato.php");
 else:
     echo "Ha ocurrido un error al eliminar este registro";
 endif;
