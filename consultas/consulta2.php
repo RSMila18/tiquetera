@@ -6,11 +6,9 @@ include "../includes/header.php";
 <h1 class="mt-3">Consulta 2</h1>
 
 <p class="mt-3">
-    Sea sumavalor la suma de los valores de todos los proyectos asociados con un cliente.
-    El segundo botón debe mostrar el código y el valor de cada uno de los proyectos 
-    que cumple todas las siguientes condiciones: tiene un valor mayor que el 
-    presupuesto de la empresa que lo revisa y además el cliente que lo revisa es el 
-    gerente de la empresa que lo revisa.
+    Debe mostrar los datos de los solicitantes que:  Tienen contrato firmado, que han supervisado al menos dos conciertos y 
+    que nunca han sido proponentes.
+
 </p>
 
 <?php
@@ -18,7 +16,16 @@ include "../includes/header.php";
 require('../config/conexion.php');
 
 // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-$query = "SELECT codigo, valor FROM proyecto";
+$query = "SELECT s.numero_de_identificacion, s.nombre, s.tipo_de_persona
+FROM solicitante s
+JOIN concierto c ON s.numero_de_identificacion = c.id_supervisor
+WHERE s.numero_contrato IS NOT NULL
+  AND s.numero_de_identificacion NOT IN (
+    SELECT id_proponente FROM concierto
+)
+GROUP BY s.numero_de_identificacion, s.nombre, s.tipo_de_persona
+HAVING COUNT(*) >= 2
+";
 
 // Ejecutar la consulta
 $resultadoC2 = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -39,8 +46,9 @@ if($resultadoC2 and $resultadoC2->num_rows > 0):
         <!-- Títulos de la tabla, cambiarlos -->
         <thead class="table-dark">
             <tr>
-                <th scope="col" class="text-center">Cédula</th>
+                <th scope="col" class="text-center">Número de identificación</th>
                 <th scope="col" class="text-center">Nombre</th>
+                <th scope="col" class="text-center">Tipo de persona</th>
             </tr>
         </thead>
 
@@ -54,8 +62,9 @@ if($resultadoC2 and $resultadoC2->num_rows > 0):
             <!-- Fila que se generará -->
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
-                <td class="text-center"><?= $fila["cedula"]; ?></td>
+                <td class="text-center"><?= $fila["numero_de_identificacion"]; ?></td>
                 <td class="text-center"><?= $fila["nombre"]; ?></td>
+                <td class="text-center"><?= $fila["tipo_de_persona"]; ?></td>
             </tr>
 
             <?php
