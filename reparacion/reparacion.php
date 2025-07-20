@@ -1,5 +1,8 @@
 <?php
 include "../includes/header.php";
+require("../mecanico/mecanico_select.php");
+$resultadoProponente = $resultadoMecanico;
+$resultadoSupervisor = $resultadoMecanico;
 ?>
 
 <!-- TÍTULO. Cambiarlo, pero dejar especificada la analogía -->
@@ -25,6 +28,7 @@ include "../includes/header.php";
             <input type="number" class="form-control" id="costo_de_realizacion" name="costo_de_realizacion" required>
         </div>
 
+    
         <!-- Consultar la lista de solicitantes para el proponente y desplegarlos -->
         <div class="mb-3">
             <label for="id_proponente" class="form-label">Identificación del proponente</label>
@@ -33,15 +37,12 @@ include "../includes/header.php";
                 <!-- Option por defecto -->
                 <option value="" selected disabled hidden></option>
 
-                <?php
-                // Importar el código del otro archivo
-                require("../mecanico/mecanico_select.php");
-                
+                <?php                
                 // Verificar si llegan datos
-                if($resultadoMecanico):
+                if($resultadoProponente):
                     
                     // Iterar sobre los registros que llegaron
-                    foreach ($resultadoMecanico as $fila):
+                    foreach ($resultadoProponente as $fila):
                 ?>
 
                 <!-- Opción que se genera -->
@@ -63,15 +64,12 @@ include "../includes/header.php";
                 <!-- Option por defecto -->
                 <option value="" selected disabled hidden></option>
 
-                <?php
-                // Importar el código del otro archivo
-                require("../mecanico/mecanico_select.php");
-                
+                <?php                
                 // Verificar si llegan datos
-                if($resultadoMecanico):
-                    
+                if($resultadoSupervisor):
+
                     // Iterar sobre los registros que llegaron
-                    foreach ($resultadoMecanico as $fila):
+                    foreach ($resultadoSupervisor as $fila):
                 ?>
 
                 <!-- Opción que se genera -->
