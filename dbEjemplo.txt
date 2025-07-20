@@ -1,23 +1,24 @@
-CREATE TABLE cliente(
-  cedula INT(10) PRIMARY KEY,
-  nombre VARCHAR(50) NOT NULL,
-  celular INT(10) NOT NULL
+CREATE TABLE contrato(
+  numero_de_contrato INT(10) PRIMARY KEY,
+  monto_acordado FLOAT(20,2) NOT NULL,
+  fecha_de_firma DATE NOT NULL,
+  fecha_de_presentacion DATE NOT NULL
 );
 
-CREATE TABLE empresa(
-  nit INT(10) PRIMARY KEY,
+CREATE TABLE solicitante(
+  numero_de_identificacion INT(10) PRIMARY KEY,
   nombre VARCHAR(50) NOT NULL,
-  presupuesto INT(10) NOT NULL,
-  cliente INT(10),
-  FOREIGN KEY(cliente) REFERENCES cliente
+  tipo_de_persona VARCHAR(50) NOT NULL,
+  numero_contrato INT(10),
+  FOREIGN KEY (numero_contrato) REFERENCES contrato(numero_de_contrato)
 );
 
-CREATE TABLE proyecto(
-  codigo INT(10) PRIMARY KEY,
-  fechacreacion DATE NOT NULL,
-  valor INT(10) NOT NULL,
-  cliente INT(10),
-  empresa INT(10),
-  FOREIGN KEY(cliente) REFERENCES cliente,
-  FOREIGN KEY(empresa) REFERENCES empresa
+CREATE TABLE concierto(
+  código_de_concierto INT(10) PRIMARY KEY,
+  fecha DATE NOT NULL,
+  costo_de_realizacion FLOAT(20,2) NOT NULL,
+  id_proponente INT(10) NOT NULL,
+  id_supervisor INT(10),
+  FOREIGN KEY (id_proponente) REFERENCES solicitante(numero_de_identificacion),
+  FOREIGN KEY (id_supervisor) REFERENCES solicitante(numero_de_identificacion)
 );
