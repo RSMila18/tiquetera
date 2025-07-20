@@ -3,16 +3,16 @@ include "../includes/header.php";
 ?>
 
 <!-- TÍTULO. Cambiarlo, pero dejar especificada la analogía -->
-<h1 class="mt-3">Entidad análoga a CLIENTE (NOMBRE)</h1>
+<h1 class="mt-3">Entidad análoga a MECANICO (SOLICITANTE)</h1>
 
 <!-- FORMULARIO. Cambiar los campos de acuerdo a su trabajo -->
 <div class="formulario p-4 m-3 border rounded-3">
 
-    <form action="cliente_insert.php" method="post" class="form-group">
+    <form action="mecanico_insert.php" method="post" class="form-group">
 
         <div class="mb-3">
-            <label for="cedula" class="form-label">Cédula</label>
-            <input type="number" class="form-control" id="cedula" name="cedula" required>
+            <label for="numero_de_identificacion" class="form-label">Numero de identificacion</label>
+            <input type="number" class="form-control" id="numero_de_identificacion" name="numero_de_identificacion" required>
         </div>
 
         <div class="mb-3">
@@ -21,8 +21,8 @@ include "../includes/header.php";
         </div>
 
         <div class="mb-3">
-            <label for="celular" class="form-label">Celular</label>
-            <input type="number" class="form-control" id="celular" name="celular" required>
+            <label for="tipo_de_persona" class="form-label">Tipo de persona</label>
+            <input type="text" class="form-control" id="tipo_de_persona" name="tipo_de_persona" required>
         </div>
 
         <button type="submit" class="btn btn-primary">Agregar</button>
@@ -33,10 +33,10 @@ include "../includes/header.php";
 
 <?php
 // Importar el código del otro archivo
-require("cliente_select.php");
+require("mecanico_select.php");
 
 // Verificar si llegan datos
-if($resultadoCliente and $resultadoCliente->num_rows > 0):
+if($resultadoMecanico and $resultadoMecanico->num_rows > 0):
 ?>
 
 <!-- MOSTRAR LA TABLA. Cambiar las cabeceras -->
@@ -47,9 +47,9 @@ if($resultadoCliente and $resultadoCliente->num_rows > 0):
         <!-- Títulos de la tabla, cambiarlos -->
         <thead class="table-dark">
             <tr>
-                <th scope="col" class="text-center">Cédula</th>
+                <th scope="col" class="text-center">Numero de identificacion</th>
                 <th scope="col" class="text-center">Nombre</th>
-                <th scope="col" class="text-center">Celular</th>
+                <th scope="col" class="text-center">Tipo de persona</th>
                 <th scope="col" class="text-center">Acciones</th>
             </tr>
         </thead>
@@ -58,20 +58,20 @@ if($resultadoCliente and $resultadoCliente->num_rows > 0):
 
             <?php
             // Iterar sobre los registros que llegaron
-            foreach ($resultadoCliente as $fila):
+            foreach ($resultadoMecanico as $fila):
             ?>
 
             <!-- Fila que se generará -->
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
-                <td class="text-center"><?= $fila["cedula"]; ?></td>
+                <td class="text-center"><?= $fila["numero_de_identificacion"]; ?></td>
                 <td class="text-center"><?= $fila["nombre"]; ?></td>
-                <td class="text-center"><?= $fila["celular"]; ?></td>
+                <td class="text-center"><?= $fila["tipo_de_persona"]; ?></td>
                 
                 <!-- Botón de eliminar. Debe de incluir la CP de la entidad para identificarla -->
                 <td class="text-center">
-                    <form action="cliente_delete.php" method="post">
-                        <input hidden type="text" name="cedulaEliminar" value="<?= $fila["cedula"]; ?>">
+                    <form action="mecanico_delete.php" method="post">
+                        <input hidden type="text" name="idEliminar" value="<?= $fila["numero_de_identificacion"]; ?>">
                         <button type="submit" class="btn btn-danger">Eliminar</button>
                     </form>
                 </td>
