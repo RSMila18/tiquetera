@@ -27,7 +27,36 @@ include "../includes/header.php";
         
         <!-- Consultar la lista de solicitantes y desplegarlos -->
         <div class="mb-3">
-            <label for="solicitante" class="form-label">Solicitante</label>
+            <label for="solicitante" class="form-label">Identificación del proponente</label>
+            <select name="solicitante" id="solicitante" class="form-select">
+                
+                <!-- Option por defecto -->
+                <option value="" selected disabled hidden></option>
+
+                <?php
+                // Importar el código del otro archivo
+                require("../mecanico/mecanico_select.php");
+                
+                // Verificar si llegan datos
+                if($resultadoMecanico):
+                    
+                    // Iterar sobre los registros que llegaron
+                    foreach ($resultadoMecanico as $fila):
+                ?>
+
+                <!-- Opción que se genera -->
+                <option value="<?= $fila["nombre"]; ?>"><?= $fila["tipo_de_persona"]; ?> <?= $fila["numero_de_identificacion"]; ?></option>
+
+                <?php
+                        // Cerrar los estructuras de control
+                    endforeach;
+                endif;
+                ?>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="solicitante" class="form-label">Identificación del supervisor</label>
             <select name="solicitante" id="solicitante" class="form-select">
                 
                 <!-- Option por defecto -->
