@@ -21,7 +21,5 @@ CREATE TABLE concierto(
   id_supervisor INT(10),
   FOREIGN KEY (id_proponente) REFERENCES solicitante(numero_de_identificacion),
   FOREIGN KEY (id_supervisor) REFERENCES solicitante(numero_de_identificacion),
-CHECK (id_proponente <> id supervisor)
+  CHECK (id_proponente <> id_supervisor)
 );
-
-
