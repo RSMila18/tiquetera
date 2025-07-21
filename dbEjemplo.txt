@@ -10,6 +10,7 @@ CREATE TABLE solicitante(
   nombre VARCHAR(50) NOT NULL,
   tipo_de_persona VARCHAR(50) NOT NULL,
   numero_contrato INT(10) UNIQUE,
+  CHECK (tipo_de_persona IN ('Natural', 'Jurídica')),
   FOREIGN KEY (numero_contrato) REFERENCES contrato(numero_de_contrato)
 );
 
@@ -21,5 +22,5 @@ CREATE TABLE concierto(
   id_supervisor INT(10),
   FOREIGN KEY (id_proponente) REFERENCES solicitante(numero_de_identificacion),
   FOREIGN KEY (id_supervisor) REFERENCES solicitante(numero_de_identificacion),
-  CHECK (id_proponente <> id_supervisor)
+  CHECK (id_supervisor IS NULL OR id_proponente <> id_supervisor)
 );

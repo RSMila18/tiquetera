@@ -6,9 +6,8 @@ include "../includes/header.php";
 <h1 class="mt-3">Consulta 2</h1>
 
 <p class="mt-3">
-    Debe mostrar los datos de los solicitantes que:  Tienen contrato firmado, que han supervisado al menos dos conciertos y 
-    que nunca han sido proponentes.
-
+    Se muestran los datos de los solicitantes que tienen un contrato asociado, que han supervisado
+    al menos dos conciertos y que nunca han sido proponentes.
 </p>
 
 <?php
@@ -16,16 +15,16 @@ include "../includes/header.php";
 require('../config/conexion.php');
 
 // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-$query = "SELECT s.numero_de_identificacion, s.nombre, s.tipo_de_persona
+$query = 
+"SELECT
+s.numero_de_identificacion, s.nombre, s.tipo_de_persona
 FROM solicitante s
 JOIN concierto c ON s.numero_de_identificacion = c.id_supervisor
-WHERE s.numero_contrato IS NOT NULL
-  AND s.numero_de_identificacion NOT IN (
+WHERE s.numero_contrato IS NOT NULL AND s.numero_de_identificacion NOT IN (
     SELECT id_proponente FROM concierto
 )
 GROUP BY s.numero_de_identificacion, s.nombre, s.tipo_de_persona
-HAVING COUNT(*) >= 2
-";
+HAVING COUNT(*) >= 2";
 
 // Ejecutar la consulta
 $resultadoC2 = mysqli_query($conn, $query) or die(mysqli_error($conn));

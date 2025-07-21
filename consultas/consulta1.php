@@ -6,9 +6,9 @@ include "../includes/header.php";
 <h1 class="mt-3">Consulta 1</h1>
 
 <p class="mt-3">
-    Debe mostrar los datos de los tres conciertos de mayor costo de realización que no tienen 
-    supervisor asignado. Para cada uno de estos conciertos, se deben mostrar los datos del 
-    solicitante que propuso el evento.
+    Se muestran los datos de los tres conciertos de mayor costo de realización que no tienen 
+    supervisor asignado. Para cada uno de estos conciertos, se muestran los datos del 
+    proponente del concierto.
 </p>
 
 <?php
@@ -16,18 +16,15 @@ include "../includes/header.php";
 require('../config/conexion.php');
 
 // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-$query = "SELECT 
-	c.codigo_de_concierto,
-    c.costo_de_realizacion,
-    s.numero_de_identificacion,
-    s.nombre,
-    s.tipo_de_persona
+$query = 
+"SELECT 
+c.codigo_de_concierto, c.costo_de_realizacion,
+s.numero_de_identificacion, s.nombre, s.tipo_de_persona
 FROM concierto c
 JOIN solicitante s ON c.id_proponente = s.numero_de_identificacion
 WHERE c.id_supervisor IS NULL
 ORDER BY c.costo_de_realizacion DESC
-LIMIT 3
-            ";
+LIMIT 3";
 
 // Ejecutar la consulta
 $resultadoC1 = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -48,11 +45,11 @@ if($resultadoC1 and $resultadoC1->num_rows > 0):
         <!-- Títulos de la tabla, cambiarlos -->
         <thead class="table-dark">
             <tr>
-                <th class="text-center">Codigo Concierto</th>
-                <th class="text-center">Costo Realizacion</th>
-                <th class="text-center">ID Solicitante</th>
+                <th class="text-center">Codigo del concierto</th>
+                <th class="text-center">Costo de realización</th>
+                <th class="text-center">Id. del solicitante</th>
                 <th class="text-center">Nombre</th>
-                <th class="text-center">Tipo de Persona</th>
+                <th class="text-center">Tipo de persona</th>
             </tr>
         </thead>
 

@@ -22,16 +22,22 @@ include "../includes/header.php";
 
         <div class="mb-3">
             <label for="tipo_de_persona" class="form-label">Tipo de persona</label>
-            <input type="text" class="form-control" id="tipo_de_persona" name="tipo_de_persona" required>
+            <select name="tipo_de_persona" id="tipo_de_persona" class="form-select">
+                <!-- Option por defecto -->
+                <option value="" selected disabled hidden></option>
+                <!-- Opciones de tipo de persona -->
+                <option value="Natural">Natural</option>
+                <option value="Jurídica">Jurídica</option>
+            </select>
         </div>
 
         <!-- Consultar la lista de contratos y desplegarlos -->
         <div class="mb-3">
-            <label for="numero_contrato" class="form-label">Contratos</label>
+            <label for="numero_contrato" class="form-label">Número de contrato</label>
             <select name="numero_contrato" id="numero_contrato" class="form-select">
                 
                 <!-- Option por defecto -->
-                <option value="" selected disabled hidden></option>
+                <option value=""></option>
 
                 <?php
                 // Importar el código del otro archivo

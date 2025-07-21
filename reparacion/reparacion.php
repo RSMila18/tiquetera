@@ -1,6 +1,8 @@
 <?php
 include "../includes/header.php";
+
 require("../mecanico/mecanico_select.php");
+
 $resultadoProponente = $resultadoMecanico;
 $resultadoSupervisor = $resultadoMecanico;
 ?>
@@ -19,7 +21,7 @@ $resultadoSupervisor = $resultadoMecanico;
         </div>
 
         <div class="mb-3">
-            <label for="fecha_de_presentacion" class="form-label">Fecha de Presentación</label>
+            <label for="fecha_de_presentacion" class="form-label">Fecha de presentación</label>
             <input type="date" class="form-control" id="fecha_de_presentacion" name="fecha_de_presentacion" required>
         </div>
 
@@ -62,7 +64,7 @@ $resultadoSupervisor = $resultadoMecanico;
             <select name="id_supervisor" id="id_supervisor" class="form-select">
 
                 <!-- Option por defecto -->
-                <option value="" selected disabled hidden></option>
+                <option value=""></option>
 
                 <?php                
                 // Verificar si llegan datos
@@ -106,7 +108,7 @@ if($resultadoReparacion and $resultadoReparacion->num_rows > 0):
         <thead class="table-dark">
             <tr>
                 <th scope="col" class="text-center">Código de concierto</th>
-                <th scope="col" class="text-center">Fecha de Presentación</th>
+                <th scope="col" class="text-center">Fecha de presentación</th>
                 <th scope="col" class="text-center">Costo de realización</th>
                 <th scope="col" class="text-center">Identificación del proponente</th>
                 <th scope="col" class="text-center">Identificación del supervisor</th>

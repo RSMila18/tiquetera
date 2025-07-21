@@ -6,9 +6,9 @@ include "../includes/header.php";
 <h1 class="mt-3">Búsqueda 1</h1>
 
 <p class="mt-3">
-    Dado el código de un contrato, se deben mostrar todos los conciertos supervisados por el supervisor asociado a ese contrato,
-    siempre y cuando la fecha del concierto esté por fuera del intervalo de fechas del contrato (es decir, cuando el supervisor
-    aún no tenía o ya no tenía contrato).
+    Dado el código de un contrato, se muestran todos los conciertos supervisados por el solicitante 
+    asociado a dicho contrato, siempre y cuando la fecha del concierto esté por fuera del intervalo
+    de fechas del contrato.
 
 </p>
 
@@ -39,12 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     $numero_de_contrato = $_POST["numero_de_contrato"];
 
     // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-    $query = "SELECT c.*
-FROM concierto c
-JOIN solicitante s ON c.id_supervisor = s.numero_de_identificacion
-JOIN contrato ct ON s.numero_contrato = ct.numero_de_contrato
-WHERE ct.numero_de_contrato = $numero_de_contrato
-AND (c.fecha_de_presentacion < ct.fecha_de_inicio OR c.fecha_de_presentacion > ct.fecha_de_finalizacion)";
+    $query =
+    "SELECT c.*
+    FROM concierto c
+    JOIN solicitante s ON c.id_supervisor = s.numero_de_identificacion
+    JOIN contrato ct ON s.numero_contrato = ct.numero_de_contrato
+    WHERE ct.numero_de_contrato = $numero_de_contrato AND (
+    c.fecha_de_presentacion < ct.fecha_de_inicio OR c.fecha_de_presentacion > ct.fecha_de_finalizacion
+    )";
 
     // Ejecutar la consulta
     $resultadoB1 = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -66,8 +68,8 @@ AND (c.fecha_de_presentacion < ct.fecha_de_inicio OR c.fecha_de_presentacion > c
                 <th scope="col" class="text-center">Código de concierto</th>
                 <th scope="col" class="text-center">Fecha de presentación</th>
                 <th scope="col" class="text-center">Costo de realización</th>
-                <th scope="col" class="text-center">ID Proponente</th>
-                <th scope="col" class="text-center">ID Supervisor</th>
+                <th scope="col" class="text-center">Id. del proponente</th>
+                <th scope="col" class="text-center">Id. del supervisor</th>
             </tr>
         </thead>
 

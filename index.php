@@ -14,7 +14,7 @@
 <body>
 <div class="container mt-5">
 
-    <h1>Trabajo final BD1 - La Tiquetera la más baratera</h1>
+    <h1>Trabajo final BD1 - Tiquetera la más baratera</h1>
 
     <div class="informacion">
         <ul>

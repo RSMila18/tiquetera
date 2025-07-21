@@ -6,7 +6,8 @@ include "../includes/header.php";
 <h1 class="mt-3">Búsqueda 2</h1>
 
 <p class="mt-3">
-    Dado el código de un concierto, se deben mostrar todos los datos del contrato del solicitante (la persona que propuso el concierto).
+    Dado el código de un concierto, se muestran todos los datos del contrato asociado al solicitante
+    que propuso dicho concierto.
 
 </p>
 
@@ -37,11 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     $codigo_de_concierto = $_POST["codigo_de_concierto"];
 
     // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-    $query = "SELECT ct.*
-FROM contrato ct
-JOIN solicitante s ON ct.numero_de_contrato = s.numero_contrato
-JOIN concierto c ON s.numero_de_identificacion = c.id_proponente
-WHERE c.codigo_de_concierto = $codigo_de_concierto";
+    $query = 
+    "SELECT ct.*
+    FROM contrato ct
+    JOIN solicitante s ON ct.numero_de_contrato = s.numero_contrato
+    JOIN concierto c ON s.numero_de_identificacion = c.id_proponente
+    WHERE c.codigo_de_concierto = $codigo_de_concierto";
 
     // Ejecutar la consulta
     $resultadoB2 = mysqli_query($conn, $query) or die(mysqli_error($conn));
