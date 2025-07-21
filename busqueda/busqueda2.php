@@ -6,9 +6,8 @@ include "../includes/header.php";
 <h1 class="mt-3">Búsqueda 2</h1>
 
 <p class="mt-3">
-    Dos números enteros n1 y n2, n1 ≥ 0, n2 > n1. Se debe mostrar el nit y el 
-    nombre de todas las empresas que han revisado entre n1 y n2 proyectos
-    (intervalo cerrado [n1, n2]).
+    Dado el código de un concierto, se deben mostrar todos los datos del contrato del solicitante (la persona que propuso el concierto).
+
 </p>
 
 <!-- FORMULARIO. Cambiar los campos de acuerdo a su trabajo -->
@@ -18,7 +17,7 @@ include "../includes/header.php";
     <form action="busqueda2.php" method="post" class="form-group">
 
         <div class="mb-3">
-            <label for="codigo_de_concierto" class="form-label">úmero de contrato</label>
+            <label for="codigo_de_concierto" class="form-label">Código de concierto</label>
             <input type="number" class="form-control" id="codigo_de_concierto" name="codigo_de_concierto" required>
         </div>
 
@@ -38,7 +37,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
     $codigo_de_concierto = $_POST["codigo_de_concierto"];
 
     // Query SQL a la BD -> Crearla acá (No está completada, cambiarla a su contexto y a su analogía)
-    $query = "SELECT nit, nombre FROM empresa";
+    $query = "SELECT ct.*
+FROM contrato ct
+JOIN solicitante s ON ct.numero_de_contrato = s.numero_contrato
+JOIN concierto c ON s.numero_de_identificacion = c.id_proponente
+WHERE c.codigo_de_concierto = $codigo_de_concierto";
 
     // Ejecutar la consulta
     $resultadoB2 = mysqli_query($conn, $query) or die(mysqli_error($conn));
@@ -74,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'):
             <!-- Fila que se generará -->
             <tr>
                 <!-- Cada una de las columnas, con su valor correspondiente -->
-                <td class="text-center"><?= $fila["codigo_de_contrato"]; ?></td>
+                <td class="text-center"><?= $fila["numero_de_contrato"]; ?></td>
                 <td class="text-center"><?= $fila["monto_acordado"]; ?></td>
                 <td class="text-center"><?= $fila["fecha_de_inicio"]; ?></td>
                 <td class="text-center"><?= $fila["fecha_de_finalizacion"]; ?></td>
@@ -96,7 +99,7 @@ else:
 ?>
 
 <div class="alert alert-danger text-center mt-5">
-    No se encontraron resultados para esta consulta
+    No se encontraron resultados para esta busqueda.
 </div>
 
 <?php
