@@ -7,7 +7,7 @@ require('../config/conexion.php');
 $idEliminar = $_POST["idEliminar"];
 
 // Query SQL a la BD
-$query = "DELETE FROM solicitante WHERE numero_de_identificacion = '$idEliminar'";
+$query = "DELETE FROM solicitante WHERE numero_de_identificacion = $idEliminar";
 
 // Ejecutar consulta
 $result = mysqli_query($conn, $query) or die(mysqli_error($conn));
