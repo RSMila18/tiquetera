@@ -28,8 +28,8 @@
     <div class="integrantes">
         <h2>Integrantes</h2>
         <ul>
-            <li>Maria Fernanda Carrillo Usama</li>
-            <li>Maria Camila Rios Mejia</li>
+            <li>Maria Fernanda Carrillo Usama - CC.1005546448</li>
+            <li>Maria Camila Rios Mejia - CC.1193142631</li>
         </ul>
     </div>
 
