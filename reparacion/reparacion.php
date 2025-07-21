@@ -48,7 +48,7 @@ $resultadoSupervisor = $resultadoMecanico;
                 ?>
 
                 <!-- Opción que se genera -->
-                <option value="<?= $fila["numero_de_identificacion"]; ?>"><?= $fila["nombre"]; ?></option>
+                <option value="<?= $fila["numero_de_identificacion"];?>">Id. <?= $fila["numero_de_identificacion"]; ?> - <?= $fila["nombre"]; ?></option>
 
                 <?php
                         // Cerrar los estructuras de control
@@ -75,7 +75,7 @@ $resultadoSupervisor = $resultadoMecanico;
                 ?>
 
                 <!-- Opción que se genera -->
-                <option value="<?= $fila["numero_de_identificacion"]; ?>"><?= $fila["nombre"]; ?></option>
+                <option value="<?= $fila["numero_de_identificacion"];?>">Id. <?= $fila["numero_de_identificacion"]; ?> - <?= $fila["nombre"]; ?></option>
 
                 <?php
                         // Cerrar los estructuras de control
