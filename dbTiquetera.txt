@@ -2,7 +2,8 @@ CREATE TABLE contrato(
   numero_de_contrato INT(10) PRIMARY KEY,
   monto_acordado INT(20) NOT NULL,
   fecha_de_inicio DATE NOT NULL,
-  fecha_de_finalizacion DATE NOT NULL
+  fecha_de_finalizacion DATE NOT NULL,
+  CHECK(fecha_de_finalizacion >= fecha_de_inicio)
 );
 
 CREATE TABLE solicitante(
